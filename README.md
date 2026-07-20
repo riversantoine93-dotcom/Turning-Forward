@@ -85,3 +85,13 @@ The uploaded logo is stored at:
 ## Production access control still needed
 
 Supabase authentication identifies students, but it does not yet verify that a student purchased the course. Before selling access, connect Shopify order webhooks to an enrollment table and check enrollment before unlocking course pages.
+
+## Vercel npm installation fix
+
+This package intentionally does not include the earlier lockfile because it contained build-environment-specific registry URLs. The project now:
+
+- Pins Node.js to 20.x and npm to 10.x in `package.json`.
+- Uses the public npm registry through `.npmrc`.
+- Uses `npm install --no-audit --no-fund` as Vercel's install command.
+
+After pushing this version to GitHub, redeploy with **Use existing Build Cache** turned off.
